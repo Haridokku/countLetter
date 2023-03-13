@@ -3,14 +3,15 @@ import {Component} from 'react'
 import './index.css'
 
 class LettersCalculator extends Component {
-  state = {count: 0}
+  state = {searchInput: ''}
 
   onChangeText = event => {
-    this.setState(prevState => ({count: prevState.count + 1}))
+    const {value} = event.target
+    this.setState({searchInput: value})
   }
 
   render() {
-    const {count} = this.state
+    const {searchInput} = this.state
     return (
       <div className="app-container">
         <img
@@ -20,8 +21,11 @@ class LettersCalculator extends Component {
         />
         <div className="text-container">
           <h1 className="head">Calculate the Letters you enter</h1>
-          <p className="para">Enter the phrase</p>
+          <label htmlFor="inputElement" className="para">
+            Enter the phrase
+          </label>
           <input
+            id="inputElement"
             type="text"
             placeholder="Enter the phrase"
             onChange={this.onChangeText}
@@ -29,7 +33,7 @@ class LettersCalculator extends Component {
           />
 
           <div className="letters-container">
-            <p className="text">No.of letters: {count}</p>
+            <p className="text">No.of letters: {searchInput.length}</p>
           </div>
         </div>
       </div>
@@ -37,3 +41,4 @@ class LettersCalculator extends Component {
   }
 }
 export default LettersCalculator
+
